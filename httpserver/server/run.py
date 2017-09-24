@@ -9,31 +9,29 @@ def parser_user_agent(string):
 
 
 def parser_url(url,client_socket,request_string):
-	if url==1:
-		client_socket.send("""\
-    	HTTP/1.1 200 OK
+	if url=="/":
+		client_socket.send("HTTP/1.1 200 OK\r\n\r\n"+"Hello mister!\nYou are: "+parser_user_agent(request_string)+"\n") 
+		return
 
-    	Hello mister!
-    	You are: """+parser_user_agent(request_string)+"\n") 
-    	return
 	if url=="/test/":
-		client_socket.send(request_string)  #send string to the socket
+		client_socket.send("HTTP/1.1 200 OK\r\n\r\n"+request_string)  #send string to the socket
 		return
 	if url=="/media/":
 		directory="/home/kirill/programms/progs_for_web/media"
 		files=os.listdir(directory)
+		client_socket.send("HTTP/1.1 200 OK\r\n\r\n")
 		for name in files:
 			client_socket.send(name+"\n")
 		return 
+	if url.count("/")>2:
+		client_socket.send("HTTP/1.1 404 Not Found\r\n\r\n"+"Page not found\n")
+		return
 	try:
 		file=open("."+url,'r')
 	except IOError as e:
-		client_socket.send("""\
-    	HTTP/1.1 404 Not Found
-
-		File not found\n""")
+		client_socket.send("HTTP/1.1 404 Not Found\r\n\r\n"+"File not found\n")
 	else:
-		client_socket.send(file.read())
+		client_socket.send("HTTP/1.1 200 OK\r\n\r\n"+file.read())
 		
 
 
@@ -41,10 +39,8 @@ def parser_request_dirs(request):
 	unuseble,pattern,after_pat=request.partition("GET ")
 	del pattern,unuseble
 	way=after_pat[0:after_pat.find("HTTP")-1]
-	if len(way)==1:
-		return 1
-	else:
-		return way
+	return way
+	
 
 
 
@@ -61,12 +57,7 @@ while 1:
         (client_socket, adress) = server_socket.accept()
         print 'Got new client', client_socket.getsockname(),adress  #return the socket's own adress (host,port)
         request_string = client_socket.recv(2048)  #Receive data from the socket with 2048 size of buffer
-        #print request_string
-        #print parser_user_agent(request_string)
         parser_url(parser_request_dirs(request_string),client_socket,request_string)
-
-
-          
         client_socket.close()
     except KeyboardInterrupt:  #if we try to stop prog with using "Ctrl+C", we have this exception
         print 'Stopped'
