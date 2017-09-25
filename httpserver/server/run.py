@@ -17,7 +17,7 @@ def parser_url(url,client_socket,request_string):
 		client_socket.send("HTTP/1.1 200 OK\r\n\r\n"+request_string)  #send string to the socket
 		return
 	if url=="/media/":
-		directory="/home/kirill/programms/progs_for_web/media"
+		directory="./media"
 		files=os.listdir(directory)
 		client_socket.send("HTTP/1.1 200 OK\r\n\r\n")
 		for name in files:
