@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """application URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -15,7 +16,9 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from core.views import main_page
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^main/(?P<name>\d+)/$', main_page),
 ]
