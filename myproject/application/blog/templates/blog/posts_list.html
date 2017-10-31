@@ -1,0 +1,18 @@
+<html>
+{% extends "core/base.html" %}
+{% block title %}
+<h3>Блог со всеми его постами</h3>
+
+<h4><a href="{% url "blogs:blogspage"   %}">Назад</a></h4>
+{% endblock %}
+{% block content %}
+<p>
+    {% for post in blog.posts.all%}
+    <div>
+        <em>{{forloop.counter}}.</em>
+    <a href="{% url "blogs:onepost" id_2=blog.id id_1=post.id  %}"> {{post.postname}} </a>
+    </div>
+    {% endfor %}
+</p>
+{% endblock%}
+</html>

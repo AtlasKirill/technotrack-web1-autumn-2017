@@ -1,28 +1,35 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
-from django.shortcuts import HttpResponse
-from django.shortcuts import render
-
-from django.shortcuts import render
 
 
-# Create your views here.
+from django.shortcuts import resolve_url
+from django.views.generic import FormView
 
-def main_page(request, name=None):
-    return render(request, 'main_page.html')
-
-
-def all_blogs(request):
-    return render(request, 'all_blogs.html')
-
-
-def all_blogs(request):
-    return render(request, 'all_blogs.html')
+from comments.models import Comment
+from django.views.generic.base import TemplateView
+from blog.models import Blog, Post
+from core.forms import UserRegistration
 
 
-def all_post_in_blog(request, name=None):
-    return render(request, 'all_post_in_blog.html', {'name': name})
 
+class HomePageView(TemplateView):
+    template_name = "core/base.html"
 
-def certain_post(request, name1=None, name2=None):
-    return render(request, 'certain_post.html', {'name1': name1, 'name2': name2})
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        context['latest_articles'] = Blog.objects.order_by('-createdata')[:3]
+        context['blog_count'] = Blog.objects.all().count()
+        context['post_count'] = Post.objects.all().count()
+        context['comment_count'] = Comment.objects.all().count()
+        return context
+
+class RegisterFormView(FormView):
+    form_class = UserRegistration
+    template_name = "core/signup.html"
+
+    def form_valid(self, form):
+        form.save()
+        return super(RegisterFormView, self).form_valid(form)
+
+    def get_success_url(self):
+        return resolve_url('core:mainpg')

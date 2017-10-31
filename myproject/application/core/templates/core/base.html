@@ -1,0 +1,21 @@
+<html>
+{% block title %}
+    <h1>Главная страница</h1>
+{% endblock %}
+
+{% block content %}
+    <h3><a href="{% url 'login' %}?next={{ request.path }}">Login</a></h3>
+    <h3><a href="{% url 'signup:new_signup' %}">Register</a></h3>
+    <h2><strong>Количество всех блогов: {{ blog_count }}</strong></h2>
+    <h2><strong>Количество всех постов: {{ post_count }}</strong></h2>
+    <h2><strong>Количество всех комментариев: {{ comment_count }}</strong></h2>
+    <h3>Список последних созданных блогов:</h3>
+    {% for blog in latest_articles %}
+        <div><em>{{ forloop.counter }}. </em> <a href="{% url "blogs:blogsview" id=blog.id %}">{{ blog }}</a></div>
+    {% endfor %}
+    <h3><a href="{% url "blogs:blogspage" %}">Список всех блогов</a></h3>
+    <div><a href="{% url "blogs:post_creation" %}">Создание поста</a></div>
+{% endblock %}
+
+<footer><p>Copyright</p></footer>
+</html>
