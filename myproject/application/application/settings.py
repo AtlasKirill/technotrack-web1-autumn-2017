@@ -14,12 +14,10 @@ import os
 # Update database configuration with $DATABASE_URL.
 import dj_database_url
 
-
-#from ConfigParser import RawConfigParser
+# from ConfigParser import RawConfigParser
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
@@ -31,7 +29,6 @@ SECRET_KEY = 'hgkb8le4t2fxi+i26k%sz9n=8eplr-5vl+luqmike!hs!8##b1'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 # LOGIN_REDIRECT_URL = '/'
@@ -54,9 +51,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
 ]
 
-MEDIA_URL='/home/kirill/programms/progs_for_web/technotrack-web1-autumn-2017/myproject/application/media/'
-MEDIA_ROOT='/home/kirill/programms/progs_for_web/technotrack-web1-autumn-2017/myproject/application/media/'
-
+MEDIA_URL = '/home/kirill/programms/progs_for_web/technotrack-web1-autumn-2017/myproject/application/media/'
+MEDIA_ROOT = '/home/kirill/programms/progs_for_web/technotrack-web1-autumn-2017/myproject/application/media/'
 
 # AUTH_USER_MODEL = 'core.User'
 
@@ -92,7 +88,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'application.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -103,6 +98,11 @@ DATABASES = {
         # 'USER': 'kirill',
         # 'PASSWORD': '1122KIR',
         # 'HOST': 'localhost',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'd2g4j7pk7bl8bf',
+        'USER': 'uhfxjjwcfxihez',
+        'PASSWORD': 'a2f341cb51adbce0646aa2121f093b0828340b6bf61e1a9a5b2df4f07ff94453',
+        'HOST': 'ec2-54-225-88-191.compute-1.amazonaws.com',
 
     }
 }
@@ -127,7 +127,6 @@ AUTH_PASSWORD_VALIDATORS = [
     # },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -140,7 +139,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -170,4 +168,3 @@ AUTH_USER_MODEL = 'core.User'
 LOGIN_URL = 'core:login'
 LOGIN_REDIRECT_URL = 'core:home'
 LOGOUT_REDIRECT_URL = 'core:home'
-
