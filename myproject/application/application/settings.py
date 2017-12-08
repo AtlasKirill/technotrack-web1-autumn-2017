@@ -98,11 +98,11 @@ WSGI_APPLICATION = 'application.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'kir4',
-        'USER': 'kirill',
-        'PASSWORD': '1122KIR',
-        'HOST': 'localhost',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'kir4',
+        # 'USER': 'kirill',
+        # 'PASSWORD': '1122KIR',
+        # 'HOST': 'localhost',
 
     }
 }
