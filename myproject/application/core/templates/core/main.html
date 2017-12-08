@@ -1,0 +1,24 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+    <article>
+        <div class="page-header text-center">
+            <h1>Главная страница
+                <p>
+                    <small>Добро пожадовать!</small>
+                </p>
+            </h1>
+        </div>
+        <div class="jumbotron">
+            <h2>Содержание</h2>
+            <p>
+            <div>Blogs:<span class="badge">{{ blogs_count }}</span></div>
+            <div>Posts:<span class="badge">{{ posts_count }}</span></div>
+            <div>Comments:<span class="badge">{{ comment_count }}</span></div>
+            </p>
+            <p><a class="btn btn-primary btn-lg" href="{% url "blog:allblogs" %}" role="button">Посмотреть все блоги</a></p>
+        </div>
+    </article>
+{% endblock %}
+
+

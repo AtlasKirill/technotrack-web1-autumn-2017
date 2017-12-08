@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
+# coding: utf-8
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
-# Register your models here.
+
 from .models import User
 
+# Register your models here.
 
 class UserAdmin(BaseUserAdmin):
 
     fieldsets = BaseUserAdmin.fieldsets + (
         (u'Дополнительно', {'fields': ('admin_avatar', 'avatar')}),
     )
-   # readonly_fields = ('admin_avatar', )
 
     def admin_avatar(self, instance):
         return instance.avatar and u'<img src="{0}" width="100px" />'.format(
