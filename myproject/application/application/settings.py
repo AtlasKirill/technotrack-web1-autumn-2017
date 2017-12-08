@@ -28,7 +28,7 @@ SECRET_KEY = 'hgkb8le4t2fxi+i26k%sz9n=8eplr-5vl+luqmike!hs!8##b1'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["peaceful-inlet-57375.herokuapp.com"]
 
 # Redirect to home URL after login (Default redirects to /accounts/profile/)
 # LOGIN_REDIRECT_URL = '/'
